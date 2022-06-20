@@ -1,0 +1,183 @@
+.bt, .container .Phone .phoneSide {
+  border: solid red 1px;
+}
+
+*, *::after, *::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  background: none;
+}
+
+main * {
+  transform-style: preserve-3d;
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+  perspective: 2000px;
+}
+.container .Phone {
+  width: 400px;
+  height: 800px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) translateZ(-100px) rotateX(60deg) rotateY(0deg) rotateZ(-45deg);
+}
+.container .Phone .phoneSide {
+  position: absolute;
+}
+.container .Phone .PhoneFront, .container .Phone .PhoneBack {
+  width: 400px;
+  height: 800px;
+  border-radius: 40px;
+}
+.container .Phone .PhoneFront {
+  transform: translatez(20px);
+}
+.container .Phone .PhoneBack {
+  transform: translateZ(-20px) rotateY(180deg);
+  background-image: url(asset/phoneBack.webp);
+  background-size: cover;
+}
+.container .Phone .PhoneTop, .container .Phone .PhoneBottom {
+  width: 320px;
+  height: 40px;
+}
+.container .Phone .PhoneTop .leftCorner, .container .Phone .PhoneBottom .leftCorner {
+  transform: translateX(50%) rotateY(-90deg) translateX(-40px) translateZ(-80px);
+}
+.container .Phone .PhoneTop .rightCorner, .container .Phone .PhoneBottom .rightCorner {
+  transform: translateX(50%) rotateY(0deg) translateX(0px) translateZ(-40px);
+}
+.container .Phone .PhoneTop {
+  transform: translateY(-20px) rotateX(90deg) translate(40px) rotateZ(180deg);
+}
+.container .Phone .leftCorner {
+  left: -80px;
+}
+.container .Phone .rightCorner {
+  right: 0px;
+}
+.container .Phone .corner {
+  position: absolute;
+  width: 2px;
+  height: 40px;
+}
+.container .Phone .corner div {
+  background: rgb(92, 92, 92);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+.container .Phone .corner div:nth-child(0) {
+  transform: rotateY(0deg) translatez(40px);
+}
+.container .Phone .corner div:nth-child(1) {
+  transform: rotateY(3deg) translatez(40px);
+}
+.container .Phone .corner div:nth-child(2) {
+  transform: rotateY(6deg) translatez(40px);
+}
+.container .Phone .corner div:nth-child(3) {
+  transform: rotateY(9deg) translatez(40px);
+}
+.container .Phone .corner div:nth-child(4) {
+  transform: rotateY(12deg) translatez(40px);
+}
+.container .Phone .corner div:nth-child(5) {
+  transform: rotateY(15deg) translatez(40px);
+}
+.container .Phone .corner div:nth-child(6) {
+  transform: rotateY(18deg) translatez(40px);
+}
+.container .Phone .corner div:nth-child(7) {
+  transform: rotateY(21deg) translatez(40px);
+}
+.container .Phone .corner div:nth-child(8) {
+  transform: rotateY(24deg) translatez(40px);
+}
+.container .Phone .corner div:nth-child(9) {
+  transform: rotateY(27deg) translatez(40px);
+}
+.container .Phone .corner div:nth-child(10) {
+  transform: rotateY(30deg) translatez(40px);
+}
+.container .Phone .corner div:nth-child(11) {
+  transform: rotateY(33deg) translatez(40px);
+}
+.container .Phone .corner div:nth-child(12) {
+  transform: rotateY(36deg) translatez(40px);
+}
+.container .Phone .corner div:nth-child(13) {
+  transform: rotateY(39deg) translatez(40px);
+}
+.container .Phone .corner div:nth-child(14) {
+  transform: rotateY(42deg) translatez(40px);
+}
+.container .Phone .corner div:nth-child(15) {
+  transform: rotateY(45deg) translatez(40px);
+}
+.container .Phone .corner div:nth-child(16) {
+  transform: rotateY(48deg) translatez(40px);
+}
+.container .Phone .corner div:nth-child(17) {
+  transform: rotateY(51deg) translatez(40px);
+}
+.container .Phone .corner div:nth-child(18) {
+  transform: rotateY(54deg) translatez(40px);
+}
+.container .Phone .corner div:nth-child(19) {
+  transform: rotateY(57deg) translatez(40px);
+}
+.container .Phone .corner div:nth-child(20) {
+  transform: rotateY(60deg) translatez(40px);
+}
+.container .Phone .corner div:nth-child(21) {
+  transform: rotateY(63deg) translatez(40px);
+}
+.container .Phone .corner div:nth-child(22) {
+  transform: rotateY(66deg) translatez(40px);
+}
+.container .Phone .corner div:nth-child(23) {
+  transform: rotateY(69deg) translatez(40px);
+}
+.container .Phone .corner div:nth-child(24) {
+  transform: rotateY(72deg) translatez(40px);
+}
+.container .Phone .corner div:nth-child(25) {
+  transform: rotateY(75deg) translatez(40px);
+}
+.container .Phone .corner div:nth-child(26) {
+  transform: rotateY(78deg) translatez(40px);
+}
+.container .Phone .corner div:nth-child(27) {
+  transform: rotateY(81deg) translatez(40px);
+}
+.container .Phone .corner div:nth-child(28) {
+  transform: rotateY(84deg) translatez(40px);
+}
+.container .Phone .corner div:nth-child(29) {
+  transform: rotateY(87deg) translatez(40px);
+}
+.container .Phone .corner div:nth-child(30) {
+  transform: rotateY(90deg) translatez(40px);
+}
+.container .Phone .PhoneBottom {
+  bottom: 0;
+  transform: translateY(20px) rotateX(-90deg) translate(40px);
+}
+.container .Phone .PhoneRight, .container .Phone .PhoneLeft {
+  width: 40px;
+  height: 720px;
+}
+.container .Phone .PhoneRight {
+  transform: translateX(-20px) rotateY(-90deg) translateY(40px);
+  left: 0;
+}
+.container .Phone .PhoneLeft {
+  transform: translateX(20px) rotateY(90deg) translateY(40px);
+  right: 0;
+}/*# sourceMappingURL=index.css.map */

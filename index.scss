@@ -1,0 +1,98 @@
+$phwidth :400px;
+$phheight:$phwidth*2;
+$phthick :$phwidth/10;
+
+.bt{
+    border: solid red 1px;
+}
+
+*,*::after,*::before{
+    padding: 0; margin: 0;box-sizing: border-box;
+    background: none;
+}
+main *{
+    transform-style: preserve-3d;
+}
+.container{
+    width: 100%;
+    height: 100vh;
+    perspective: 2000px;
+    .Phone{
+        width: $phwidth;
+        height: $phheight;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%) translateZ(-100px) rotateX(60deg) rotateY(0deg) rotateZ(-45deg);
+        .phoneSide{
+            position: absolute;
+            // background: rgb(143, 143, 143);
+            @extend.bt;
+        }
+        .PhoneFront,.PhoneBack{
+            width: $phwidth;
+            height: $phheight;
+            border-radius: 40px;
+        }
+        .PhoneFront{
+            transform: translatez($phthick/2);
+        }
+        .PhoneBack{
+            transform: translateZ($phthick/-2) rotateY(180deg);
+            background-image: url(asset/phoneBack.webp);
+            background-size: cover;
+        }
+        .PhoneTop,.PhoneBottom{
+            width: 320px;
+            height: $phthick;
+            .leftCorner{
+                transform: translateX(50%) rotateY(-90deg) translateX(-40px) translateZ(-80px);
+            }
+            .rightCorner{
+                transform: translateX(50%) rotateY(0deg) translateX(0px) translateZ(-40px);
+            }
+        }
+        .PhoneTop{
+            transform: translateY(-$phthick/2) rotateX(90deg) translate(40px) rotateZ(180deg);
+        }
+        .leftCorner{
+            left: -80px;
+        }
+        .rightCorner{
+            right: 0px;
+        }
+        
+        .corner{
+            position: absolute;
+            width: 2px;
+            height:  $phthick;
+                div{
+                    background: rgb(92, 92, 92);
+                    width: 100%;
+                    height: 100%;
+                    position: absolute;
+                    @for $i from 0 through 30 {
+                        &:nth-child(#{$i}){
+                            transform: rotateY($i*3deg) translatez(40px);
+                        }
+                    }
+                }
+        }
+        .PhoneBottom{
+            bottom: 0;
+            transform: translateY(+$phthick/2) rotateX(-90deg) translate(40px);
+        }
+        .PhoneRight,.PhoneLeft{
+            width: $phthick;
+            height: 720px;
+        }
+        .PhoneRight{
+            transform: translateX(-$phthick/2) rotateY(-90deg) translateY(40px);
+            left: 0;
+        }
+        .PhoneLeft{
+            transform: translateX(+$phthick/2) rotateY(90deg) translateY(40px);
+            right: 0;
+        }
+    }
+}
