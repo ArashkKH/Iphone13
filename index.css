@@ -1,5 +1,10 @@
-.bt, .container .Phone .phoneSide {
+.bt {
   border: solid red 1px;
+}
+
+.df, .container .Phone .PhoneFront .topBar .camera, .container .Phone .PhoneFront .topBar {
+  display: flex;
+  align-items: center;
 }
 
 *, *::after, *::before {
@@ -13,6 +18,12 @@ main * {
   transform-style: preserve-3d;
 }
 
+main {
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
 .container {
   width: 100%;
   height: 100vh;
@@ -24,7 +35,7 @@ main * {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%) translateZ(-100px) rotateX(60deg) rotateY(0deg) rotateZ(-45deg);
+  transform: translate(-50%, -50%) translateZ(-800px) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
 }
 .container .Phone .phoneSide {
   position: absolute;
@@ -36,6 +47,47 @@ main * {
 }
 .container .Phone .PhoneFront {
   transform: translatez(20px);
+  background: rgb(20, 20, 20);
+}
+.container .Phone .PhoneFront .screen {
+  width: 93%;
+  height: 96%;
+  border-radius: 30px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgb(143, 143, 143);
+}
+.container .Phone .PhoneFront .topBar {
+  width: 45%;
+  height: 6%;
+  background: rgb(20, 20, 20);
+  border-radius: 20px;
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%);
+  justify-content: space-evenly;
+}
+.container .Phone .PhoneFront .topBar .camera {
+  width: 12px;
+  height: 12px;
+  background: rgb(43, 43, 43);
+  border-radius: 50%;
+  justify-content: center;
+}
+.container .Phone .PhoneFront .topBar .camera .lenz {
+  width: 70%;
+  height: 70%;
+  border-radius: 50%;
+  background: rgb(0, 0, 63);
+}
+.container .Phone .PhoneFront .topBar .speaker {
+  width: 50%;
+  height: 6px;
+  border-radius: 10px;
+  background: rgb(36, 36, 36);
 }
 .container .Phone .PhoneBack {
   transform: translateZ(-20px) rotateY(180deg);
@@ -45,6 +97,7 @@ main * {
 .container .Phone .PhoneTop, .container .Phone .PhoneBottom {
   width: 320px;
   height: 40px;
+  background: rgb(170, 170, 170);
 }
 .container .Phone .PhoneTop .leftCorner, .container .Phone .PhoneBottom .leftCorner {
   transform: translateX(50%) rotateY(-90deg) translateX(-40px) translateZ(-80px);
@@ -63,11 +116,11 @@ main * {
 }
 .container .Phone .corner {
   position: absolute;
-  width: 2px;
+  width: 2.5px;
   height: 40px;
 }
 .container .Phone .corner div {
-  background: rgb(92, 92, 92);
+  background: rgb(109, 109, 109);
   width: 100%;
   height: 100%;
   position: absolute;
@@ -172,6 +225,7 @@ main * {
 .container .Phone .PhoneRight, .container .Phone .PhoneLeft {
   width: 40px;
   height: 720px;
+  background: rgb(170, 170, 170);
 }
 .container .Phone .PhoneRight {
   transform: translateX(-20px) rotateY(-90deg) translateY(40px);
@@ -180,4 +234,16 @@ main * {
 .container .Phone .PhoneLeft {
   transform: translateX(20px) rotateY(90deg) translateY(40px);
   right: 0;
+}
+
+.screen {
+  transform-style: flat;
+}
+.screen * {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+}
+.screen .display1 {
+  background: #000;
 }/*# sourceMappingURL=index.css.map */

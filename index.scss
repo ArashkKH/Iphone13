@@ -6,12 +6,22 @@ $phthick :$phwidth/10;
     border: solid red 1px;
 }
 
+.df{
+    display: flex;
+    align-items: center;
+}
+
 *,*::after,*::before{
     padding: 0; margin: 0;box-sizing: border-box;
     background: none;
 }
 main *{
     transform-style: preserve-3d;
+}
+main{
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
 }
 .container{
     width: 100%;
@@ -23,11 +33,10 @@ main *{
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: translate(-50%,-50%) translateZ(-100px) rotateX(60deg) rotateY(0deg) rotateZ(-45deg);
+        transform: translate(-50%,-50%) translateZ(-800px) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
         .phoneSide{
             position: absolute;
             // background: rgb(143, 143, 143);
-            @extend.bt;
         }
         .PhoneFront,.PhoneBack{
             width: $phwidth;
@@ -36,6 +45,51 @@ main *{
         }
         .PhoneFront{
             transform: translatez($phthick/2);
+            background: rgb(20, 20, 20);
+            .screen{
+                width: 93%;
+                height: 96%;
+                border-radius: 30px;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%,-50%);
+                background: rgb(143, 143, 143);
+            }
+            .topBar{
+                width: 45%;
+                height: 6%;
+                background: rgb(20, 20, 20);
+                border-radius: 20px;
+                position: absolute;
+                left: 50%;
+                top: 0;
+                transform: translate(-50%);
+                @extend.df;
+                justify-content: space-evenly;
+                .camera{
+                    width: 12px;
+                    height: 12px;
+                    background: rgb(43, 43, 43);
+                    border-radius: 50%;
+                    @extend.df;
+                    justify-content: center;
+                    .lenz{
+                        width: 70%;
+                        height: 70%;
+                        border-radius: 50%;
+                        background: rgb(0, 0, 63);
+
+                    }
+                }
+                .speaker{
+                    width: 50%;
+                    height: 6px;
+                    border-radius: 10px;
+                    background: rgb(36, 36, 36);
+                }
+
+            }
         }
         .PhoneBack{
             transform: translateZ($phthick/-2) rotateY(180deg);
@@ -45,6 +99,7 @@ main *{
         .PhoneTop,.PhoneBottom{
             width: 320px;
             height: $phthick;
+            background: rgb(170, 170, 170);
             .leftCorner{
                 transform: translateX(50%) rotateY(-90deg) translateX(-40px) translateZ(-80px);
             }
@@ -64,10 +119,10 @@ main *{
         
         .corner{
             position: absolute;
-            width: 2px;
+            width: 2.5px;
             height:  $phthick;
                 div{
-                    background: rgb(92, 92, 92);
+                    background: rgb(109, 109, 109);
                     width: 100%;
                     height: 100%;
                     position: absolute;
@@ -85,6 +140,7 @@ main *{
         .PhoneRight,.PhoneLeft{
             width: $phthick;
             height: 720px;
+            background: rgb(170, 170, 170);
         }
         .PhoneRight{
             transform: translateX(-$phthick/2) rotateY(-90deg) translateY(40px);
@@ -94,5 +150,20 @@ main *{
             transform: translateX(+$phthick/2) rotateY(90deg) translateY(40px);
             right: 0;
         }
+    }
+}
+
+//-------------------------------------------------------
+
+
+.screen{
+    transform-style: flat;
+    *{
+        width: 100%;
+        height: 100%;
+        border-radius: inherit;
+    }
+    .display1{
+        background: #000;
     }
 }
