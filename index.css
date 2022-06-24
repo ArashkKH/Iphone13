@@ -30,20 +30,40 @@ main {
   perspective: 2000px;
 }
 .container .Phone {
-  width: 400px;
-  height: 800px;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%) translateZ(-800px) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+}
+@media screen and (max-width: 768px) {
+  .container .Phone {
+    width: 400px;
+    height: 800px;
+    transform: translate(-50%, -50%) translateZ(-800px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translateY(0px);
+  }
+}
+@media screen and (min-width: 768px) {
+  .container .Phone {
+    width: 80%;
+    height: 95vh;
+    transform: translate(-50%, -50%) translateZ(-800px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translateY(0px);
+  }
 }
 .container .Phone .phoneSide {
   position: absolute;
 }
 .container .Phone .PhoneFront, .container .Phone .PhoneBack {
-  width: 400px;
-  height: 800px;
-  border-radius: 40px;
+  width: 100%;
+  height: 100%;
+}
+@media screen and (max-width: 768px) {
+  .container .Phone .PhoneFront, .container .Phone .PhoneBack {
+    border-radius: 40px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .container .Phone .PhoneFront, .container .Phone .PhoneBack {
+    border-radius: 40px;
+  }
 }
 .container .Phone .PhoneFront {
   transform: translatez(20px);
@@ -91,8 +111,101 @@ main {
 }
 .container .Phone .PhoneBack {
   transform: translateZ(-20px) rotateY(180deg);
-  background-image: url(asset/phoneBack.webp);
+  background: rgb(51, 51, 51);
+  background: linear-gradient(338deg, rgb(51, 51, 51) 0%, rgb(97, 97, 97) 100%);
   background-size: cover;
+}
+.container .Phone .PhoneBack .Applelogo {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 70px;
+}
+.container .Phone .PhoneBack .cameraSection {
+  width: 180px;
+  height: 180px;
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  display: flex;
+  transform-style: preserve-3d;
+  transform: translateZ(5px);
+}
+.container .Phone .PhoneBack .cameraSection .cameraSides {
+  position: absolute;
+  background: rgb(46, 46, 46);
+  border: solid 2px rgb(49, 49, 49);
+}
+.container .Phone .PhoneBack .cameraSection .frontside {
+  width: 100%;
+  height: 100%;
+  transform: translateZ(5px);
+  border-radius: 5px;
+}
+.container .Phone .PhoneBack .cameraSection .frontside .lens1, .container .Phone .PhoneBack .cameraSection .frontside .lens2, .container .Phone .PhoneBack .cameraSection .frontside .lens3 {
+  width: 78px;
+  height: 78px;
+  border-radius: 50%;
+  background: rgb(37, 37, 37);
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container .Phone .PhoneBack .cameraSection .frontside .lens1 .outer, .container .Phone .PhoneBack .cameraSection .frontside .lens2 .outer, .container .Phone .PhoneBack .cameraSection .frontside .lens3 .outer {
+  width: 80%;
+  height: 80%;
+  border-radius: 50%;
+  background: rgb(0, 0, 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container .Phone .PhoneBack .cameraSection .frontside .lens1 .outer .inner, .container .Phone .PhoneBack .cameraSection .frontside .lens2 .outer .inner, .container .Phone .PhoneBack .cameraSection .frontside .lens3 .outer .inner {
+  width: 80%;
+  height: 80%;
+  border-radius: 50%;
+  background: rgb(19, 19, 19);
+}
+.container .Phone .PhoneBack .cameraSection .frontside .lens1 {
+  top: 10px;
+  left: 10px;
+}
+.container .Phone .PhoneBack .cameraSection .frontside .lens2 {
+  bottom: 10px;
+  left: 10px;
+}
+.container .Phone .PhoneBack .cameraSection .frontside .lens3 {
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+}
+.container .Phone .PhoneBack .cameraSection .leftside, .container .Phone .PhoneBack .cameraSection .rightside {
+  width: 10px;
+  height: 100%;
+}
+.container .Phone .PhoneBack .cameraSection .topside, .container .Phone .PhoneBack .cameraSection .bottomside {
+  width: 100%;
+  height: 10px;
+}
+.container .Phone .PhoneBack .cameraSection .bottomside {
+  transform: rotateX(-90deg) translateZ(172.5px);
+}
+.container .Phone .PhoneBack .cameraSection .leftside {
+  transform: rotateY(-90deg) translateZ(5px);
+}
+.container .Phone .PhoneBack .cameraSection .rightside {
+  transform: rotateY(90deg) translateZ(172.5px);
+}
+.container .Phone .PhoneBack .cameraSection .topside {
+  transform: rotateX(90deg) translateZ(5px);
 }
 .container .Phone .PhoneTop, .container .Phone .PhoneBottom {
   width: 320px;

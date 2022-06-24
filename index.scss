@@ -28,20 +28,30 @@ main{
     height: 100vh;
     perspective: 2000px;
     .Phone{
-        width: $phwidth;
-        height: $phheight;
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: translate(-50%,-50%) translateZ(-800px) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+        @media screen and (max-width:768px){
+            width: 400px;
+            height: 800px;
+            transform: translate(-50%,-50%) translateZ(-800px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translateY(0px);
+        }
+        @media screen and (min-width:768px){
+            width: 80%;
+            height: 95vh;
+            transform: translate(-50%,-50%) translateZ(-800px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translateY(0px);
+        }
         .phoneSide{
             position: absolute;
             // background: rgb(143, 143, 143);
         }
         .PhoneFront,.PhoneBack{
-            width: $phwidth;
-            height: $phheight;
-            border-radius: 40px;
+            width: 100%;
+            height: 100%;
+            @media screen and (max-width:768px){
+                border-radius: 40px;}
+            @media screen and (min-width:768px){
+                border-radius: 40px;}
         }
         .PhoneFront{
             transform: translatez($phthick/2);
@@ -93,8 +103,103 @@ main{
         }
         .PhoneBack{
             transform: translateZ($phthick/-2) rotateY(180deg);
-            background-image: url(asset/phoneBack.webp);
+            background: rgb(51,51,51);
+            background: linear-gradient(338deg, rgba(51,51,51,1) 0%, rgba(97,97,97,1) 100%);
             background-size: cover;
+            .Applelogo{
+                width: 100px;
+                height: 100px;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%,-50%);
+                color: white;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 70px;
+            }
+            .cameraSection{
+                width: 180px;
+                height: 180px;
+                position: absolute;
+                top: 50px;
+                left: 50px;
+                display: flex;
+                // border: solid red 1px;
+                transform-style: preserve-3d;
+                transform: translateZ(5px);
+                .cameraSides{
+                    position: absolute;
+                    background: rgb(46, 46, 46);
+                    border: solid 2px rgb(49, 49, 49);
+                    // transform: translateZ(5px);
+                }
+                .frontside{
+                    width: 100%;
+                    height: 100%;
+                    transform: translateZ(5px);
+                    border-radius: 5px;
+                    .lens1,.lens2,.lens3{
+                        width: 78px;
+                        height: 78px;
+                        border-radius: 50%;
+                        background: rgb(37, 37, 37);
+                        position: absolute;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        .outer{
+                            width: 80%;
+                            height: 80%;
+                            border-radius: 50%;
+                            background: rgb(0, 0, 0);
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            .inner{
+                                width: 80%;
+                                height: 80%;
+                                border-radius: 50%;
+                                background: rgb(19, 19, 19);
+                            }
+                        }
+                    }
+                    .lens1{
+                        top: 10px;
+                        left: 10px;
+                    }
+                    .lens2{
+                        bottom: 10px;
+                        left: 10px;
+                    }
+                    .lens3{
+                        top: 50%;
+                        right: 10px;
+                        transform: translateY(-50%);
+                    }
+                }
+                .leftside,.rightside{
+                    width: 10px;
+                    height: 100%;
+                }
+                .topside,.bottomside{
+                    width: 100%;
+                    height: 10px;
+                }
+                .bottomside{
+                    transform: rotateX(-90deg) translateZ(172.5px);
+                }
+                .leftside{
+                    transform: rotateY(-90deg) translateZ(5px);
+                }
+                .rightside{
+                    transform: rotateY(90deg) translateZ(172.5px);
+                }
+                .topside{
+                    transform: rotateX(90deg) translateZ(5px);
+                }
+            }
         }
         .PhoneTop,.PhoneBottom{
             width: 320px;
@@ -135,7 +240,7 @@ main{
         }
         .PhoneBottom{
             bottom: 0;
-            transform: translateY(+$phthick/2) rotateX(-90deg) translate(40px);
+            transform: translateY(20px) rotateX(-90deg) translate(40px);
         }
         .PhoneRight,.PhoneLeft{
             width: $phthick;
@@ -143,11 +248,11 @@ main{
             background: rgb(170, 170, 170);
         }
         .PhoneRight{
-            transform: translateX(-$phthick/2) rotateY(-90deg) translateY(40px);
+            transform: translateX(-20px) rotateY(-90deg) translateY(40px);
             left: 0;
         }
         .PhoneLeft{
-            transform: translateX(+$phthick/2) rotateY(90deg) translateY(40px);
+            transform: translateX(20px) rotateY(90deg) translateY(40px);
             right: 0;
         }
     }
