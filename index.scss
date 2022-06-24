@@ -34,13 +34,12 @@ main{
         @media screen and (max-width:768px){
             width: 400px;
             height: 800px;
-            transform: translate(-50%,-50%) translateZ(-800px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translateY(0px);
         }
         @media screen and (min-width:768px){
-            width: 80%;
-            height: 95vh;
-            transform: translate(-50%,-50%) translateZ(-800px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translateY(0px);
+            width: 90vw;
+            height: 55vw;
         }
+        transform: translate(-50%,-50%) translateZ(-800px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translateY(0px);
         .phoneSide{
             position: absolute;
             // background: rgb(143, 143, 143);
@@ -48,10 +47,7 @@ main{
         .PhoneFront,.PhoneBack{
             width: 100%;
             height: 100%;
-            @media screen and (max-width:768px){
-                border-radius: 40px;}
-            @media screen and (min-width:768px){
-                border-radius: 40px;}
+            border-radius: 40px;
         }
         .PhoneFront{
             transform: translatez($phthick/2);
@@ -67,6 +63,9 @@ main{
                 background: rgb(143, 143, 143);
             }
             .topBar{
+                @media screen and (min-width:768px){
+                    display: none;
+                }    
                 width: 45%;
                 height: 6%;
                 background: rgb(20, 20, 20);
@@ -103,9 +102,15 @@ main{
         }
         .PhoneBack{
             transform: translateZ($phthick/-2) rotateY(180deg);
-            background: rgb(51,51,51);
-            background: linear-gradient(338deg, rgba(51,51,51,1) 0%, rgba(97,97,97,1) 100%);
-            background-size: cover;
+            @media screen and (max-width:768px){
+                background: rgb(51,51,51);
+                background: linear-gradient(338deg, rgba(51,51,51,1) 0%, rgba(97,97,97,1) 100%);
+            }
+            @media screen and (min-width:768px){
+                background: rgb(60,60,60);
+                background: linear-gradient(338deg, rgba(60,60,60,1) 0%, rgba(0,0,0,1) 100%);
+            }
+
             .Applelogo{
                 width: 100px;
                 height: 100px;
@@ -120,6 +125,9 @@ main{
                 font-size: 70px;
             }
             .cameraSection{
+                @media screen and (min-width:768px){
+                    display: none;
+                } 
                 width: 180px;
                 height: 180px;
                 position: absolute;
@@ -131,7 +139,7 @@ main{
                 transform: translateZ(5px);
                 .cameraSides{
                     position: absolute;
-                    background: rgb(46, 46, 46);
+                    background: rgb(53, 53, 53);
                     border: solid 2px rgb(49, 49, 49);
                     // transform: translateZ(5px);
                 }
@@ -139,7 +147,7 @@ main{
                     width: 100%;
                     height: 100%;
                     transform: translateZ(5px);
-                    border-radius: 5px;
+                    border-radius: 20px;
                     .lens1,.lens2,.lens3{
                         width: 78px;
                         height: 78px;
@@ -202,7 +210,7 @@ main{
             }
         }
         .PhoneTop,.PhoneBottom{
-            width: 320px;
+            width: calc(100% - 80px);
             height: $phthick;
             background: rgb(170, 170, 170);
             .leftCorner{
@@ -243,13 +251,99 @@ main{
             transform: translateY(20px) rotateX(-90deg) translate(40px);
         }
         .PhoneRight,.PhoneLeft{
-            width: $phthick;
-            height: 720px;
+            width: 40px;
+            height: calc(100% - 80px);
             background: rgb(170, 170, 170);
         }
         .PhoneRight{
             transform: translateX(-20px) rotateY(-90deg) translateY(40px);
             left: 0;
+            .powerbtn,.volumbtn{
+                position: absolute;
+                left: 50%;
+                width: 20px;
+                transform: translateX(-50%) translateZ(5px) rotateX(0deg);
+                transition: 0.3s;
+                >div{
+                    position: absolute;
+                    background: rgb(70, 70, 70);
+                    transform-style: flat;
+                    label{
+                        display: block;
+                        width: 100%;
+                        height: 100%;
+                        transform: translateZ(1px);
+                        background: rgb(0, 10, 41);
+                        cursor: pointer;
+                    }
+                }
+                .volumesideRight,.volumesideLeft,.volumesideFront{
+                    display: flex;
+                    flex-direction: column;
+                    label{
+                        height: 50%;
+                    }
+                }
+
+            }
+            .powerbtn{
+                top: 40px;
+                height: 50px;
+                // border: solid red 1px;
+                .powersideFront{
+                    width: 100%;
+                    height: 100%;
+                }
+                .powersideRight,.powersideLeft{
+                    width: 5px;
+                    height: 100%;
+                }
+                .powersideRight{
+                    transform: rotateY(90deg) translate(50%) translateZ(17.5px);
+                }
+                .powersideLeft{
+                    transform: rotateY(90deg) translateX(50%) translateZ(-2.5px);
+                }
+                .powersideBottom,.powersideTop{
+                    width: 20px;
+                    height: 5px;
+                }
+                .powersideTop{
+                    transform:  rotateX(90deg) translateZ(2.5px) translateY(-2.5px);
+                }
+                .powersideBottom{
+                    transform:  rotateX(90deg) translateZ(-47.5px) translateY(-2.5px);
+                }
+            }
+            .volumbtn{
+                top: 100px;
+                height: 100px;
+                // border: solid red 1px;
+                .volumesideFront{
+                    width: 100%;
+                    height: 100%;
+                }
+                .volumesideRight,.volumesideLeft{
+                    width: 5px;
+                    height: 100%;
+                }
+                .volumesideRight{
+                    transform: rotateY(90deg) translate(50%) translateZ(17.5px);
+                }
+                .volumesideLeft{
+                    transform: rotateY(90deg) translateX(50%) translateZ(-2.5px);
+                }
+                .volumesideBottom,.volumesideTop{
+                    width: 20px;
+                    height: 5px;
+                }
+                .volumesideTop{
+                    transform:  rotateX(90deg) translateZ(2.5px) translateY(-2.5px);
+                }
+                .volumesideBottom{
+                    transform:  rotateX(90deg) translateZ(-97.5px) translateY(-2.5px);
+                }
+            }
         }
         .PhoneLeft{
             transform: translateX(20px) rotateY(90deg) translateY(40px);
@@ -257,6 +351,69 @@ main{
         }
     }
 }
+//-------------------------------------------------------
+#topView:checked~main .Phone{
+    transform: translate(-50%,-50%) translateZ(-800px) rotateX(-35deg) rotateY(0deg) rotateZ(0deg) translateY(0px);
+    transition:0.6s
+}
+#rightView:checked~main .Phone{
+    transform: translate(-50%,-50%) translateZ(-800px) rotateX(0deg) rotateY(-35deg) rotateZ(0deg) translateY(0px);
+    transition:0.6s
+}
+#bottomView:checked~main .Phone{
+    transform: translate(-50%,-50%) translateZ(-800px) rotateX(35deg) rotateY(0deg) rotateZ(0deg) translateY(0px);
+    transition:0.6s
+}
+#leftView:checked~main .Phone{
+    transform: translate(-50%,-50%) translateZ(-800px) rotateX(0deg) rotateY(35deg) rotateZ(0deg) translateY(0px);
+    transition:0.6s
+}
+#behindView:checked~main .Phone{
+    transform: translate(-50%,-50%) translateZ(-800px) rotateX(0deg) rotateY(180deg) rotateZ(0deg) translateY(0px);
+    transition:0.6s
+}
+#frontView:checked~main .Phone{
+    transform: translate(-50%,-50%) translateZ(-800px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translateY(0px);
+    transition:0.6s
+}
+#power:active~main .Phone .powerbtn{
+    transform: translateX(-50%) translateZ(1px) rotateX(0deg);
+}
+#power:checked~main .Phone .off{
+    opacity: 1;
+    z-index: 1;
+}
+#volumeup:active~main .Phone .volumbtn{
+    transform: translateX(-50%) translateZ(5px) rotateX(2deg);
+}
+#volumedown:active~main .Phone .volumbtn{
+    transform: translateX(-50%) translateZ(5px) rotateX(-2deg);
+}
+
+#volumeup:checked~main .volind{
+    animation: popin 5s ;
+}
+#volumeup:checked~main .volind>.bar{
+    top: 25%;
+}
+
+
+#volumedown:checked~main .volind{
+    animation: popin 5s ;
+}
+#volumedown:checked~main .volind>.bar{
+    top: 75%;
+}
+
+@keyframes popin {
+    10%{right: 30px;}
+    90%{right: 30px;}
+}
+
+
+
+
+
 
 //-------------------------------------------------------
 
@@ -267,8 +424,57 @@ main{
         width: 100%;
         height: 100%;
         border-radius: inherit;
+        
     }
-    .display1{
-        background: #000;
+    .monitor{
+        overflow: hidden;
+        >*{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;top: 0;
+        }
+        .off{
+            background: #000;
+            opacity: 0;
+            z-index: 0;
+            transition: opacity 0.6s;
+        }
+        .lockscreen{
+            background: rgb(58, 58, 58);
+            .volind{
+                overflow: hidden;
+                position: absolute;
+                width: 50px;
+                height: 50%;
+                background: rgb(71, 71, 71);
+                right: -300px;
+                top: 50%;
+                transform: translate(0px,-50%);
+                color: white;
+                font-size: 30px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: center;
+                i{
+                    width: 100%;
+                    height: 50px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+                .bar{
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    background: rgb(167, 167, 167);
+                    border-radius: 0px;
+                    top: 0;
+                    transition: 0.4s;
+                }
+            }
+        }
+        
     }
 }

@@ -33,19 +33,18 @@ main {
   position: absolute;
   top: 50%;
   left: 50%;
+  transform: translate(-50%, -50%) translateZ(-800px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translateY(0px);
 }
 @media screen and (max-width: 768px) {
   .container .Phone {
     width: 400px;
     height: 800px;
-    transform: translate(-50%, -50%) translateZ(-800px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translateY(0px);
   }
 }
 @media screen and (min-width: 768px) {
   .container .Phone {
-    width: 80%;
-    height: 95vh;
-    transform: translate(-50%, -50%) translateZ(-800px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translateY(0px);
+    width: 90vw;
+    height: 55vw;
   }
 }
 .container .Phone .phoneSide {
@@ -54,16 +53,7 @@ main {
 .container .Phone .PhoneFront, .container .Phone .PhoneBack {
   width: 100%;
   height: 100%;
-}
-@media screen and (max-width: 768px) {
-  .container .Phone .PhoneFront, .container .Phone .PhoneBack {
-    border-radius: 40px;
-  }
-}
-@media screen and (min-width: 768px) {
-  .container .Phone .PhoneFront, .container .Phone .PhoneBack {
-    border-radius: 40px;
-  }
+  border-radius: 40px;
 }
 .container .Phone .PhoneFront {
   transform: translatez(20px);
@@ -90,6 +80,11 @@ main {
   transform: translate(-50%);
   justify-content: space-evenly;
 }
+@media screen and (min-width: 768px) {
+  .container .Phone .PhoneFront .topBar {
+    display: none;
+  }
+}
 .container .Phone .PhoneFront .topBar .camera {
   width: 12px;
   height: 12px;
@@ -111,9 +106,18 @@ main {
 }
 .container .Phone .PhoneBack {
   transform: translateZ(-20px) rotateY(180deg);
-  background: rgb(51, 51, 51);
-  background: linear-gradient(338deg, rgb(51, 51, 51) 0%, rgb(97, 97, 97) 100%);
-  background-size: cover;
+}
+@media screen and (max-width: 768px) {
+  .container .Phone .PhoneBack {
+    background: rgb(51, 51, 51);
+    background: linear-gradient(338deg, rgb(51, 51, 51) 0%, rgb(97, 97, 97) 100%);
+  }
+}
+@media screen and (min-width: 768px) {
+  .container .Phone .PhoneBack {
+    background: rgb(60, 60, 60);
+    background: linear-gradient(338deg, rgb(60, 60, 60) 0%, rgb(0, 0, 0) 100%);
+  }
 }
 .container .Phone .PhoneBack .Applelogo {
   width: 100px;
@@ -138,16 +142,21 @@ main {
   transform-style: preserve-3d;
   transform: translateZ(5px);
 }
+@media screen and (min-width: 768px) {
+  .container .Phone .PhoneBack .cameraSection {
+    display: none;
+  }
+}
 .container .Phone .PhoneBack .cameraSection .cameraSides {
   position: absolute;
-  background: rgb(46, 46, 46);
+  background: rgb(53, 53, 53);
   border: solid 2px rgb(49, 49, 49);
 }
 .container .Phone .PhoneBack .cameraSection .frontside {
   width: 100%;
   height: 100%;
   transform: translateZ(5px);
-  border-radius: 5px;
+  border-radius: 20px;
 }
 .container .Phone .PhoneBack .cameraSection .frontside .lens1, .container .Phone .PhoneBack .cameraSection .frontside .lens2, .container .Phone .PhoneBack .cameraSection .frontside .lens3 {
   width: 78px;
@@ -208,7 +217,7 @@ main {
   transform: rotateX(90deg) translateZ(5px);
 }
 .container .Phone .PhoneTop, .container .Phone .PhoneBottom {
-  width: 320px;
+  width: calc(100% - 80px);
   height: 40px;
   background: rgb(170, 170, 170);
 }
@@ -337,18 +346,183 @@ main {
 }
 .container .Phone .PhoneRight, .container .Phone .PhoneLeft {
   width: 40px;
-  height: 720px;
+  height: calc(100% - 80px);
   background: rgb(170, 170, 170);
 }
 .container .Phone .PhoneRight {
   transform: translateX(-20px) rotateY(-90deg) translateY(40px);
   left: 0;
 }
+.container .Phone .PhoneRight .powerbtn, .container .Phone .PhoneRight .volumbtn {
+  position: absolute;
+  left: 50%;
+  width: 20px;
+  transform: translateX(-50%) translateZ(5px) rotateX(0deg);
+  transition: 0.3s;
+}
+.container .Phone .PhoneRight .powerbtn > div, .container .Phone .PhoneRight .volumbtn > div {
+  position: absolute;
+  background: rgb(70, 70, 70);
+  transform-style: flat;
+}
+.container .Phone .PhoneRight .powerbtn > div label, .container .Phone .PhoneRight .volumbtn > div label {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform: translateZ(1px);
+  background: rgb(0, 10, 41);
+  cursor: pointer;
+}
+.container .Phone .PhoneRight .powerbtn .volumesideRight, .container .Phone .PhoneRight .powerbtn .volumesideLeft, .container .Phone .PhoneRight .powerbtn .volumesideFront, .container .Phone .PhoneRight .volumbtn .volumesideRight, .container .Phone .PhoneRight .volumbtn .volumesideLeft, .container .Phone .PhoneRight .volumbtn .volumesideFront {
+  display: flex;
+  flex-direction: column;
+}
+.container .Phone .PhoneRight .powerbtn .volumesideRight label, .container .Phone .PhoneRight .powerbtn .volumesideLeft label, .container .Phone .PhoneRight .powerbtn .volumesideFront label, .container .Phone .PhoneRight .volumbtn .volumesideRight label, .container .Phone .PhoneRight .volumbtn .volumesideLeft label, .container .Phone .PhoneRight .volumbtn .volumesideFront label {
+  height: 50%;
+}
+.container .Phone .PhoneRight .powerbtn {
+  top: 40px;
+  height: 50px;
+}
+.container .Phone .PhoneRight .powerbtn .powersideFront {
+  width: 100%;
+  height: 100%;
+}
+.container .Phone .PhoneRight .powerbtn .powersideRight, .container .Phone .PhoneRight .powerbtn .powersideLeft {
+  width: 5px;
+  height: 100%;
+}
+.container .Phone .PhoneRight .powerbtn .powersideRight {
+  transform: rotateY(90deg) translate(50%) translateZ(17.5px);
+}
+.container .Phone .PhoneRight .powerbtn .powersideLeft {
+  transform: rotateY(90deg) translateX(50%) translateZ(-2.5px);
+}
+.container .Phone .PhoneRight .powerbtn .powersideBottom, .container .Phone .PhoneRight .powerbtn .powersideTop {
+  width: 20px;
+  height: 5px;
+}
+.container .Phone .PhoneRight .powerbtn .powersideTop {
+  transform: rotateX(90deg) translateZ(2.5px) translateY(-2.5px);
+}
+.container .Phone .PhoneRight .powerbtn .powersideBottom {
+  transform: rotateX(90deg) translateZ(-47.5px) translateY(-2.5px);
+}
+.container .Phone .PhoneRight .volumbtn {
+  top: 100px;
+  height: 100px;
+}
+.container .Phone .PhoneRight .volumbtn .volumesideFront {
+  width: 100%;
+  height: 100%;
+}
+.container .Phone .PhoneRight .volumbtn .volumesideRight, .container .Phone .PhoneRight .volumbtn .volumesideLeft {
+  width: 5px;
+  height: 100%;
+}
+.container .Phone .PhoneRight .volumbtn .volumesideRight {
+  transform: rotateY(90deg) translate(50%) translateZ(17.5px);
+}
+.container .Phone .PhoneRight .volumbtn .volumesideLeft {
+  transform: rotateY(90deg) translateX(50%) translateZ(-2.5px);
+}
+.container .Phone .PhoneRight .volumbtn .volumesideBottom, .container .Phone .PhoneRight .volumbtn .volumesideTop {
+  width: 20px;
+  height: 5px;
+}
+.container .Phone .PhoneRight .volumbtn .volumesideTop {
+  transform: rotateX(90deg) translateZ(2.5px) translateY(-2.5px);
+}
+.container .Phone .PhoneRight .volumbtn .volumesideBottom {
+  transform: rotateX(90deg) translateZ(-97.5px) translateY(-2.5px);
+}
 .container .Phone .PhoneLeft {
   transform: translateX(20px) rotateY(90deg) translateY(40px);
   right: 0;
 }
 
+#topView:checked ~ main .Phone {
+  transform: translate(-50%, -50%) translateZ(-800px) rotateX(-35deg) rotateY(0deg) rotateZ(0deg) translateY(0px);
+  transition: 0.6s;
+}
+
+#rightView:checked ~ main .Phone {
+  transform: translate(-50%, -50%) translateZ(-800px) rotateX(0deg) rotateY(-35deg) rotateZ(0deg) translateY(0px);
+  transition: 0.6s;
+}
+
+#bottomView:checked ~ main .Phone {
+  transform: translate(-50%, -50%) translateZ(-800px) rotateX(35deg) rotateY(0deg) rotateZ(0deg) translateY(0px);
+  transition: 0.6s;
+}
+
+#leftView:checked ~ main .Phone {
+  transform: translate(-50%, -50%) translateZ(-800px) rotateX(0deg) rotateY(35deg) rotateZ(0deg) translateY(0px);
+  transition: 0.6s;
+}
+
+#behindView:checked ~ main .Phone {
+  transform: translate(-50%, -50%) translateZ(-800px) rotateX(0deg) rotateY(180deg) rotateZ(0deg) translateY(0px);
+  transition: 0.6s;
+}
+
+#frontView:checked ~ main .Phone {
+  transform: translate(-50%, -50%) translateZ(-800px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translateY(0px);
+  transition: 0.6s;
+}
+
+#power:active ~ main .Phone .powerbtn {
+  transform: translateX(-50%) translateZ(1px) rotateX(0deg);
+}
+
+#power:checked ~ main .Phone .off {
+  opacity: 1;
+  z-index: 1;
+}
+
+#volumeup:active ~ main .Phone .volumbtn {
+  transform: translateX(-50%) translateZ(5px) rotateX(2deg);
+}
+
+#volumedown:active ~ main .Phone .volumbtn {
+  transform: translateX(-50%) translateZ(5px) rotateX(-2deg);
+}
+
+#volumeup:checked ~ main .volind {
+  -webkit-animation: popin 5s;
+          animation: popin 5s;
+}
+
+#volumeup:checked ~ main .volind > .bar {
+  top: 25%;
+}
+
+#volumedown:checked ~ main .volind {
+  -webkit-animation: popin 5s;
+          animation: popin 5s;
+}
+
+#volumedown:checked ~ main .volind > .bar {
+  top: 75%;
+}
+
+@-webkit-keyframes popin {
+  10% {
+    right: 30px;
+  }
+  90% {
+    right: 30px;
+  }
+}
+
+@keyframes popin {
+  10% {
+    right: 30px;
+  }
+  90% {
+    right: 30px;
+  }
+}
 .screen {
   transform-style: flat;
 }
@@ -357,6 +531,54 @@ main {
   height: 100%;
   border-radius: inherit;
 }
-.screen .display1 {
+.screen .monitor {
+  overflow: hidden;
+}
+.screen .monitor > * {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+.screen .monitor .off {
   background: #000;
+  opacity: 0;
+  z-index: 0;
+  transition: opacity 0.6s;
+}
+.screen .monitor .lockscreen {
+  background: rgb(58, 58, 58);
+}
+.screen .monitor .lockscreen .volind {
+  overflow: hidden;
+  position: absolute;
+  width: 50px;
+  height: 50%;
+  background: rgb(71, 71, 71);
+  right: -300px;
+  top: 50%;
+  transform: translate(0px, -50%);
+  color: white;
+  font-size: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.screen .monitor .lockscreen .volind i {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.screen .monitor .lockscreen .volind .bar {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgb(167, 167, 167);
+  border-radius: 0px;
+  top: 0;
+  transition: 0.4s;
 }/*# sourceMappingURL=index.css.map */
