@@ -477,7 +477,7 @@ main {
 
 #power:checked ~ main .Phone .off {
   opacity: 1;
-  z-index: 1;
+  z-index: 4;
 }
 
 #volumeup:active ~ main .Phone .volumbtn {
@@ -489,8 +489,8 @@ main {
 }
 
 #volumeup:checked ~ main .volind {
-  -webkit-animation: popin 5s;
-          animation: popin 5s;
+  -webkit-animation: popin 5s forwards;
+          animation: popin 5s forwards;
 }
 
 #volumeup:checked ~ main .volind > .bar {
@@ -498,8 +498,8 @@ main {
 }
 
 #volumedown:checked ~ main .volind {
-  -webkit-animation: popin 5s;
-          animation: popin 5s;
+  -webkit-animation: popin 5s forwards;
+          animation: popin 5s forwards;
 }
 
 #volumedown:checked ~ main .volind > .bar {
@@ -507,20 +507,32 @@ main {
 }
 
 @-webkit-keyframes popin {
+  0% {
+    transform: translate(300px, -50%);
+  }
   10% {
-    right: 30px;
+    transform: translate(0px, -50%);
   }
   90% {
-    right: 30px;
+    transform: translate(0px, -50%);
+  }
+  100% {
+    transform: translate(300px, -50%);
   }
 }
 
 @keyframes popin {
+  0% {
+    transform: translate(300px, -50%);
+  }
   10% {
-    right: 30px;
+    transform: translate(0px, -50%);
   }
   90% {
-    right: 30px;
+    transform: translate(0px, -50%);
+  }
+  100% {
+    transform: translate(300px, -50%);
   }
 }
 .screen {
@@ -531,34 +543,40 @@ main {
   height: 100%;
   border-radius: inherit;
 }
+.screen .notifbar {
+  width: 100%;
+  height: 6%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  z-index: 3;
+}
+.screen .notifbar * {
+  border: solid red 1px;
+}
+.screen .notifbar .rightnot, .screen .notifbar .leftnot {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: row-reverse;
+}
 .screen .monitor {
   overflow: hidden;
 }
-.screen .monitor > * {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-}
-.screen .monitor .off {
-  background: #000;
-  opacity: 0;
-  z-index: 0;
-  transition: opacity 0.6s;
-}
-.screen .monitor .lockscreen {
-  background: rgb(58, 58, 58);
-}
-.screen .monitor .lockscreen .volind {
+.screen .monitor .volind {
   overflow: hidden;
   position: absolute;
   width: 50px;
   height: 50%;
   background: rgb(71, 71, 71);
-  right: -300px;
+  right: 30px;
   top: 50%;
-  transform: translate(0px, -50%);
+  transform: translate(300px, -50%);
   color: white;
   font-size: 30px;
   display: flex;
@@ -566,14 +584,14 @@ main {
   justify-content: space-between;
   align-items: center;
 }
-.screen .monitor .lockscreen .volind i {
+.screen .monitor .volind i {
   width: 100%;
   height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.screen .monitor .lockscreen .volind .bar {
+.screen .monitor .volind .bar {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -581,4 +599,33 @@ main {
   border-radius: 0px;
   top: 0;
   transition: 0.4s;
+}
+.screen .monitor .off {
+  background: #000;
+  opacity: 0;
+  z-index: 0;
+  transition: opacity 0.6s;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+.screen .monitor .lockscreen {
+  background-size: cover;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+@media screen and (max-width: 768px) {
+  .screen .monitor .lockscreen {
+    background-image: url(asset/iphonbg.webp);
+  }
+}
+@media screen and (min-width: 768px) {
+  .screen .monitor .lockscreen {
+    background-image: url(asset/ipadbg.webp);
+  }
 }/*# sourceMappingURL=index.css.map */
