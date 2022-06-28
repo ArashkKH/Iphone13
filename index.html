@@ -7,19 +7,37 @@
     <title>Document</title>
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
 </head>
 <body>
+    <input type="radio" name="h" id="firstView" checked>
+    <input type="radio" name="h" id="Intro_Animation">
     <input type="radio" name="view" id="topView">
     <input type="radio" name="view" id="rightView">
     <input type="radio" name="view" id="bottomView">
-    <input type="radio" name="view" id="leftView" >
+    <input type="radio" name="view" id="leftView" checked >
     <input type="radio" name="view" id="behindView" >
-    <input type="radio" name="view" id="frontView" checked>
-    <input type="checkbox" name="bttn" id="power" >
+    <input type="radio" name="view" id="frontView">
+    <input type="checkbox" name="bttn" id="power" checked >
     <input type="radio" name="bttn" id="volumeup" >
     <input type="radio" name="bttn" id="volumedown" >
     <main>
+        <div class="startscreen">
+            <label for="Intro_Animation">
+                <i class="bi bi-badge-3d"></i> <p>+</p> <i class="bi bi-apple"></i>
+            </label>
+        </div>
         <div class="container">
+            <div class="viewcontrols">
+                <label for="topView"><i class="bi bi-caret-up-fill"></i></label>
+                <label for="rightView"><i class="bi bi-caret-right-fill"></i></label>
+                <label for="leftView"><i class="bi bi-caret-left-fill"></i></label>
+                <label for="bottomView"><i class="bi bi-caret-down-fill"></i></label>
+                <label for="frontView"><i class="bi bi-circle"></i></label>
+                <label for="behindView"><i class="bi bi-arrow-counterclockwise"></i></label>
+            </div>
             <div class="Phone">
                 <div class="phoneSide PhoneTop">
                     <div class="leftCorner corner">
@@ -197,25 +215,53 @@
                     <div class="screen">
                         <div class="monitor">
                             <div class="notifbar">
-                                <div class="leftnot">
-                                    
-                                </div>
-                                <div class="rigthnot">
-                                    <i class="bi bi-battery-full">
-                                    </i>
-                                    <i class="bi bi-wifi"></i>
-                                </div>
+                                <i class="bi bi-battery-full">
+                                </i><i class="bi bi-wifi"></i>
                             </div>
-                            <div class="off"></div>
                             <div class="lockscreen">
-
+                                <div class="clock">
+                                    11:34
+                                </div>
+                                <div class="notifications">
+                                    <a href="" class="notif1" target="_blank">
+                                        <figure><img src="asset/Untitled-1.webp" alt="ArashKH"></figure>
+                                        <h3>ArashKH</h3>
+                                        <p>Made with <i class="bi bi-balloon-heart-fill"></i> by Arash.KH</p>
+                                    </a>
+                                    <a href="https://www.instagram.com/arashkh_web/" class="notif2" target="_blank">
+                                        <figure><img src="asset/Instagram.webp" alt="instagram"></figure>
+                                        <h3>instagram</h3>
+                                        <p>Here I put my demos!</p>
+                                    </a>
+                                    <a href="https://www.linkedin.com/in/arash-kheirollahi/" class="notif3" target="_blank">
+                                        <figure><img src="asset/Linkedin.png" alt="linkedIn"></figure>
+                                        <h3>LinkedIn</h3>
+                                        <p>See my work here!</p>
+                                    </a>
+                                    <a href="https://github.com/ArashkKH" class="notif4" target="_blank">
+                                        <figure><img src="asset/github.png" alt="Github"></figure>
+                                        <h3>Github</h3>
+                                        <p>Brows the code yourself :D</p>
+                                    </a>
+                                </div>
                             </div>
-                            <div class="volind">
-                                <div class="bar"></div>
-                                <i class="bi bi-volume-up"></i>
-                                <i class="bi bi-volume-down"></i>
+                            <!-- ----------------- -->
+                            <div class="off"></div>
+                            <div class="outervol">
+                                <div class="volind">
+                                    <div class="bar"></div>
+                                    <i class="bi bi-volume-up"></i>
+                                    <i class="bi bi-volume-down"></i>
+                                </div>
                             </div>
-                        </div>
+                            <div class="lock">
+                                <i class="bi bi-lock"></i>
+                            </div>
+                            <div class="homebtn"></div>
+                            <div class="bottomshrts">
+                                <div class="camera"><i class="bi bi-camera"></i></div>
+                                <div class="flashlight"><i class="bi bi-lightbulb"></i></div>
+                            </div>
                     </div>
                     <div class="topBar">
                         <div class="camera">

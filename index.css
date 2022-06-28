@@ -1,5 +1,16 @@
-.bt {
-  border: solid red 1px;
+i {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+input {
+  display: none;
 }
 
 .df, .container .Phone .PhoneFront .topBar .camera, .container .Phone .PhoneFront .topBar {
@@ -12,6 +23,7 @@
   margin: 0;
   box-sizing: border-box;
   background: none;
+  font-family: "Roboto", sans-serif;
 }
 
 main * {
@@ -24,15 +36,137 @@ main {
   overflow: hidden;
 }
 
+.startscreen {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 100;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: white;
+  transform: translateZ(1px);
+  transition: 0.6s;
+}
+.startscreen label {
+  display: flex;
+  width: 200px;
+  align-items: center;
+  justify-content: space-evenly;
+  font-size: 50px;
+  transition: 0.4s;
+  border-radius: 50px;
+  padding: 20px;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+  background: white;
+  transform: translateZ(3px) translate(-50%, -50%);
+  border: 1px solid rgba(0, 0, 0, 0);
+  -webkit-animation: pulse linear infinite 1.5s 4s;
+          animation: pulse linear infinite 1.5s 4s;
+}
+.startscreen label:hover {
+  background: #000;
+  color: white;
+}
+
+@-webkit-keyframes pulse {
+  50% {
+    border: solid 1px black;
+  }
+  100% {
+    border: solid 1px rgba(0, 0, 0, 0);
+  }
+}
+
+@keyframes pulse {
+  50% {
+    border: solid 1px black;
+  }
+  100% {
+    border: solid 1px rgba(0, 0, 0, 0);
+  }
+}
+#Intro_Animation:checked ~ main .startscreen {
+  opacity: 0;
+  visibility: hidden;
+  transition: 1s;
+}
+
+#firstView:checked ~ main .startscreen {
+  opacity: 1;
+  visibility: visible;
+}
+
+#Intro_Animation:checked ~ main .Phone {
+  -webkit-animation: intro ease 10s;
+          animation: intro ease 10s;
+}
+
 .container {
   width: 100%;
   height: 100vh;
   perspective: 2000px;
 }
+.container .viewcontrols {
+  border-radius: 25px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.178);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.178);
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.178);
+  display: flex;
+  align-items: center;
+  position: absolute;
+  transition: 0.4s;
+}
+.container .viewcontrols > label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  color: rgb(31, 31, 31);
+  transition: 0.4s;
+  border: rgba(0, 0, 0, 0) 1px solid;
+}
+.container .viewcontrols > label:hover {
+  border: #000 1px solid;
+}
+@media screen and (max-width: 540px) {
+  .container .viewcontrols {
+    width: 300px;
+    height: 50px;
+    top: 1%;
+    left: 50%;
+    transform: translate(-50%);
+    background: rgb(247, 247, 247);
+    z-index: 3;
+    justify-content: space-evenly;
+  }
+}
+@media screen and (min-width: 540px) {
+  .container .viewcontrols {
+    width: 50px;
+    height: 300px;
+    left: 5%;
+    top: 50%;
+    transform: translate(0, -50%);
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+}
 .container .Phone {
   position: absolute;
   top: 50%;
   left: 50%;
+  transition: 0.4s;
   transform: translate(-50%, -50%) translateZ(-800px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translateY(0px);
 }
 @media screen and (max-width: 768px) {
@@ -76,7 +210,7 @@ main {
   border-radius: 20px;
   position: absolute;
   left: 50%;
-  top: 0;
+  top: -15px;
   transform: translate(-50%);
   justify-content: space-evenly;
 }
@@ -105,7 +239,7 @@ main {
   background: rgb(36, 36, 36);
 }
 .container .Phone .PhoneBack {
-  transform: translateZ(-20px) rotateY(180deg);
+  transform: translateZ(-40px) rotateY(180deg);
 }
 @media screen and (max-width: 768px) {
   .container .Phone .PhoneBack {
@@ -156,7 +290,7 @@ main {
   width: 100%;
   height: 100%;
   transform: translateZ(5px);
-  border-radius: 20px;
+  border-radius: 40px;
 }
 .container .Phone .PhoneBack .cameraSection .frontside .lens1, .container .Phone .PhoneBack .cameraSection .frontside .lens2, .container .Phone .PhoneBack .cameraSection .frontside .lens3 {
   width: 78px;
@@ -199,10 +333,12 @@ main {
 .container .Phone .PhoneBack .cameraSection .leftside, .container .Phone .PhoneBack .cameraSection .rightside {
   width: 10px;
   height: 100%;
+  display: none;
 }
 .container .Phone .PhoneBack .cameraSection .topside, .container .Phone .PhoneBack .cameraSection .bottomside {
   width: 100%;
   height: 10px;
+  display: none;
 }
 .container .Phone .PhoneBack .cameraSection .bottomside {
   transform: rotateX(-90deg) translateZ(172.5px);
@@ -446,6 +582,16 @@ main {
   transition: 0.6s;
 }
 
+#topView:checked ~ main .viewcontrols > label:nth-child(1),
+#rightView:checked ~ main .viewcontrols > label:nth-child(2),
+#leftView:checked ~ main .viewcontrols > label:nth-child(3),
+#behindView:checked ~ main .viewcontrols > label:nth-child(6),
+#frontView:checked ~ main .viewcontrols > label:nth-child(5),
+#bottomView:checked ~ main .viewcontrols > label:nth-child(4) {
+  background: rgb(31, 31, 31);
+  color: whitesmoke;
+}
+
 #rightView:checked ~ main .Phone {
   transform: translate(-50%, -50%) translateZ(-800px) rotateX(0deg) rotateY(-35deg) rotateZ(0deg) translateY(0px);
   transition: 0.6s;
@@ -480,7 +626,7 @@ main {
   z-index: 4;
 }
 
-#volumeup:active ~ main .Phone .volumbtn {
+#power:checked ~ main .Phone #volumeup:active ~ main .Phone .volumbtn {
   transform: translateX(-50%) translateZ(5px) rotateX(2deg);
 }
 
@@ -489,8 +635,12 @@ main {
 }
 
 #volumeup:checked ~ main .volind {
-  -webkit-animation: popin 5s forwards;
-          animation: popin 5s forwards;
+  -webkit-animation: popout 4s forwards;
+          animation: popout 4s forwards;
+}
+
+#volumeup:checked ~ main .outervol {
+  transform: translate(-330px, -50%);
 }
 
 #volumeup:checked ~ main .volind > .bar {
@@ -498,41 +648,61 @@ main {
 }
 
 #volumedown:checked ~ main .volind {
-  -webkit-animation: popin 5s forwards;
-          animation: popin 5s forwards;
+  -webkit-animation: popout2 4s forwards;
+          animation: popout2 4s forwards;
+}
+
+#volumedown:checked ~ main .outervol {
+  transform: translate(-330px, -50%);
 }
 
 #volumedown:checked ~ main .volind > .bar {
   top: 75%;
 }
 
-@-webkit-keyframes popin {
+@-webkit-keyframes popout {
   0% {
-    transform: translate(300px, -50%);
-  }
-  10% {
-    transform: translate(0px, -50%);
+    transform: translate(0px);
   }
   90% {
-    transform: translate(0px, -50%);
+    transform: translate(0px);
   }
   100% {
-    transform: translate(300px, -50%);
+    transform: translate(300px);
   }
 }
 
-@keyframes popin {
+@keyframes popout {
   0% {
-    transform: translate(300px, -50%);
-  }
-  10% {
-    transform: translate(0px, -50%);
+    transform: translate(0px);
   }
   90% {
-    transform: translate(0px, -50%);
+    transform: translate(0px);
   }
   100% {
-    transform: translate(300px, -50%);
+    transform: translate(300px);
+  }
+}
+@-webkit-keyframes popout2 {
+  0% {
+    transform: translate(0px);
+  }
+  90% {
+    transform: translate(0px);
+  }
+  100% {
+    transform: translate(300px);
+  }
+}
+@keyframes popout2 {
+  0% {
+    transform: translate(0px);
+  }
+  90% {
+    transform: translate(0px);
+  }
+  100% {
+    transform: translate(300px);
   }
 }
 .screen {
@@ -545,53 +715,70 @@ main {
 }
 .screen .notifbar {
   width: 100%;
-  height: 6%;
+  height: 48px;
   position: absolute;
   top: 0;
   left: 0;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   color: white;
   z-index: 3;
+  font-size: 20px;
 }
-.screen .notifbar * {
-  border: solid red 1px;
+.screen .notifbar > * {
+  margin: 3px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  transform: translate(-3px);
 }
-.screen .notifbar .rightnot, .screen .notifbar .leftnot {
-  width: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  flex-direction: row-reverse;
+.screen .notifbar i {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
 }
 .screen .monitor {
   overflow: hidden;
 }
-.screen .monitor .volind {
-  overflow: hidden;
+.screen .monitor .outervol {
+  overflow: visible;
   position: absolute;
   width: 50px;
   height: 50%;
-  background: rgb(71, 71, 71);
-  right: 30px;
+  right: -300px;
   top: 50%;
-  transform: translate(300px, -50%);
+  transform: translate(0px, -50%);
+  transition: 1s;
+}
+.screen .monitor .outervol .volind {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  background: rgb(71, 71, 71);
+  transform: translate(0px);
   color: white;
   font-size: 30px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  transition: 0.6s;
 }
-.screen .monitor .volind i {
+.screen .monitor .outervol .volind i {
   width: 100%;
   height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.screen .monitor .volind .bar {
+.screen .monitor .outervol .volind .bar {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -603,13 +790,60 @@ main {
 .screen .monitor .off {
   background: #000;
   opacity: 0;
-  z-index: 0;
+  z-index: -1;
   transition: opacity 0.6s;
   position: absolute;
   width: 100%;
   height: 100%;
   left: 0;
   top: 0;
+}
+.screen .monitor .homebtn {
+  width: 200px;
+  height: 5px;
+  position: absolute;
+  left: 50%;
+  bottom: 10px;
+  transform: translate(-50%);
+  background: rgb(179, 179, 179);
+  cursor: not-allowed;
+}
+.screen .monitor .lock {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  color: white;
+  font-size: 30px;
+  top: 40px;
+}
+@media screen and (min-width: 768px) {
+  .screen .monitor .lock {
+    top: 10px;
+  }
+}
+.screen .monitor .bottomshrts {
+  width: 90%;
+  height: 50px;
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translate(-50%);
+  color: rgb(233, 233, 233);
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.screen .monitor .bottomshrts > div {
+  width: 50px;
+  height: 50px;
+}
+.screen .monitor .bottomshrts i {
+  width: 50px;
+  height: 50px;
+  background: rgba(43, 43, 43, 0.247);
 }
 .screen .monitor .lockscreen {
   background-size: cover;
@@ -627,5 +861,168 @@ main {
 @media screen and (min-width: 768px) {
   .screen .monitor .lockscreen {
     background-image: url(asset/ipadbg.webp);
+  }
+}
+.screen .monitor .lockscreen {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+.screen .monitor .lockscreen .clock {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  color: whitesmoke;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 100;
+}
+@media screen and (max-width: 768px) {
+  .screen .monitor .lockscreen .clock {
+    width: 80%;
+    height: 20%;
+    top: 10%;
+    font-size: 60px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .screen .monitor .lockscreen .clock {
+    width: 80%;
+    height: 20%;
+    top: 13%;
+    font-size: 80px;
+  }
+}
+.screen .monitor .lockscreen .notifications {
+  width: 90%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  border-radius: 15px;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  background: rgba(0, 0, 0, 0.185);
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+@media screen and (max-width: 768px) {
+  .screen .monitor .lockscreen .notifications {
+    top: 28%;
+  }
+}
+@media screen and (min-width: 768px) {
+  .screen .monitor .lockscreen .notifications {
+    top: 30%;
+  }
+}
+.screen .monitor .lockscreen .notifications a {
+  width: 98%;
+  color: white;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  background: rgba(0, 0, 0, 0.171);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 10px;
+  cursor: pointer;
+}
+.screen .monitor .lockscreen .notifications a figure {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+.screen .monitor .lockscreen .notifications a h3 {
+  width: 80%;
+}
+@media screen and (min-width: 768px) {
+  .screen .monitor .lockscreen .notifications a h3 {
+    width: 90%;
+  }
+}
+.screen .monitor .lockscreen .notifications a img {
+  width: 35px;
+  height: 35px;
+}
+.screen .monitor .lockscreen .notifications a p {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 10px;
+}
+.screen .monitor .lockscreen .notifications a p i {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin: 0px 3px;
+}
+
+#firstView:checked ~ main .viewcontrols {
+  visibility: hidden;
+}
+
+#Intro_Animation:checked ~ main .viewcontrols {
+  -webkit-animation: fadein 12s ease forwards;
+          animation: fadein 12s ease forwards;
+}
+
+@-webkit-keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  90% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  90% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes intro {
+  0% {
+    transform: translate(-50%, -50%) translateZ(800px) rotateX(0deg) rotateY(180deg) rotateZ(0deg) translateY(0px);
+  }
+  50% {
+    transform: translate(-50%, -50%) translateZ(0px) rotateX(0deg) rotateY(180deg) rotateZ(0deg) translateY(0px);
+  }
+  100% {
+    transform: translate(-50%, -50%) translateZ(-800px) rotateX(360deg) rotateY(755deg) rotateZ(0deg) translateY(0px);
+  }
+}
+@keyframes intro {
+  0% {
+    transform: translate(-50%, -50%) translateZ(800px) rotateX(0deg) rotateY(180deg) rotateZ(0deg) translateY(0px);
+  }
+  50% {
+    transform: translate(-50%, -50%) translateZ(0px) rotateX(0deg) rotateY(180deg) rotateZ(0deg) translateY(0px);
+  }
+  100% {
+    transform: translate(-50%, -50%) translateZ(-800px) rotateX(360deg) rotateY(755deg) rotateZ(0deg) translateY(0px);
   }
 }/*# sourceMappingURL=index.css.map */

@@ -1,10 +1,22 @@
 $phwidth :400px;
 $phheight:$phwidth*2;
 $phthick :$phwidth/10;
-
-.bt{
-    border: solid red 1px;
+i{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+a{
+    color: inherit;
+    text-decoration: none;
+}
+
+
+input{
+    display: none;
+}
+
 
 .df{
     display: flex;
@@ -14,6 +26,7 @@ $phthick :$phwidth/10;
 *,*::after,*::before{
     padding: 0; margin: 0;box-sizing: border-box;
     background: none;
+    font-family: 'Roboto', sans-serif;
 }
 main *{
     transform-style: preserve-3d;
@@ -23,14 +36,120 @@ main{
     width: 100%;
     overflow: hidden;
 }
+
+.startscreen{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 100;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: white;
+    transform: translateZ(1px);
+    transition: 0.6s;
+    label{
+        display: flex;
+        width: 200px;
+        align-items: center;
+        justify-content: space-evenly;
+        // background: #000;
+        font-size: 50px;
+        transition: 0.4s;
+        border-radius: 50px;
+        padding: 20px;
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: 2;
+        background: white;
+        transform: translateZ(+3px) translate(-50%,-50%);
+        border: 1px solid rgba(0, 0, 0, 0);
+        animation: pulse linear infinite 1.5s 4s;
+        &:hover{
+            background: #000;
+            color: white;
+        }
+    }
+}
+@keyframes pulse {
+    50%{border: solid 1px black;}
+    100%{border: solid 1px rgba(0, 0, 0, 0);}
+}
+#Intro_Animation:checked~main .startscreen{
+    opacity: 0;
+    visibility: hidden;
+    transition:  1s;
+}
+
+
+#firstView:checked~main .startscreen{
+    opacity: 1;
+    visibility: visible;
+}
+
+#Intro_Animation:checked~main .Phone{
+    animation: intro ease 10s ;
+}
+
+
 .container{
     width: 100%;
     height: 100vh;
     perspective: 2000px;
+    .viewcontrols{
+        border-radius: 25px;
+        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.178);
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.178);
+        box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.178);
+        display: flex;
+        align-items: center;
+        position: absolute;
+        transition: 0.4s;
+        >label{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            color: rgb(31, 31, 31);
+            transition: 0.4s;
+            border: rgba(0, 0, 0, 0) 1px solid;
+            &:hover{
+                border: #000 1px solid;
+            }
+        }
+        @media screen and (max-width:540px){
+            width: 300px;
+            height: 50px;
+            top: 1%;
+            left: 50%;
+            transform: translate(-50%);
+            background: rgb(247, 247, 247);
+            z-index: 3;
+            justify-content: space-evenly;
+        }
+        @media screen and (min-width:540px){
+            width: 50px;
+            height: 300px;
+            left: 5%;
+            top: 50%;
+            transform: translate(0,-50%);
+            flex-direction: column;
+            justify-content: space-evenly;
+        }
+    }
     .Phone{
         position: absolute;
         top: 50%;
         left: 50%;
+        transition: 0.4s;
         @media screen and (max-width:768px){
             width: 400px;
             height: 800px;
@@ -72,7 +191,7 @@ main{
                 border-radius: 20px;
                 position: absolute;
                 left: 50%;
-                top: 0;
+                top: -15px;
                 transform: translate(-50%);
                 @extend.df;
                 justify-content: space-evenly;
@@ -101,7 +220,7 @@ main{
             }
         }
         .PhoneBack{
-            transform: translateZ($phthick/-2) rotateY(180deg);
+            transform: translateZ(-40px) rotateY(180deg);
             @media screen and (max-width:768px){
                 background: rgb(51,51,51);
                 background: linear-gradient(338deg, rgba(51,51,51,1) 0%, rgba(97,97,97,1) 100%);
@@ -147,7 +266,7 @@ main{
                     width: 100%;
                     height: 100%;
                     transform: translateZ(5px);
-                    border-radius: 20px;
+                    border-radius: 40px;
                     .lens1,.lens2,.lens3{
                         width: 78px;
                         height: 78px;
@@ -190,10 +309,12 @@ main{
                 .leftside,.rightside{
                     width: 10px;
                     height: 100%;
+                    display: none;
                 }
                 .topside,.bottomside{
                     width: 100%;
                     height: 10px;
+                    display: none;
                 }
                 .bottomside{
                     transform: rotateX(-90deg) translateZ(172.5px);
@@ -356,6 +477,16 @@ main{
     transform: translate(-50%,-50%) translateZ(-800px) rotateX(-35deg) rotateY(0deg) rotateZ(0deg) translateY(0px);
     transition:0.6s
 }
+#topView:checked~main .viewcontrols>label:nth-child(1),
+#rightView:checked~main .viewcontrols>label:nth-child(2),
+#leftView:checked~main .viewcontrols>label:nth-child(3),
+#behindView:checked~main .viewcontrols>label:nth-child(6),
+#frontView:checked~main .viewcontrols>label:nth-child(5),
+#bottomView:checked~main .viewcontrols>label:nth-child(4){
+    background: rgb(31, 31, 31);
+    color: whitesmoke;
+}
+
 #rightView:checked~main .Phone{
     transform: translate(-50%,-50%) translateZ(-800px) rotateX(0deg) rotateY(-35deg) rotateZ(0deg) translateY(0px);
     transition:0.6s
@@ -383,6 +514,7 @@ main{
     opacity: 1;
     z-index: 4;
 }
+#power:checked~main .Phone 
 #volumeup:active~main .Phone .volumbtn{
     transform: translateX(-50%) translateZ(5px) rotateX(2deg);
 }
@@ -391,7 +523,10 @@ main{
 }
 
 #volumeup:checked~main .volind{
-    animation: popin 5s forwards;
+    animation: popout  4s forwards;
+}
+#volumeup:checked~main .outervol{
+    transform: translate(-330px,-50%);
 }
 #volumeup:checked~main .volind>.bar{
     top: 25%;
@@ -399,20 +534,25 @@ main{
 
 
 #volumedown:checked~main .volind{
-    animation: popin 5s forwards;
+    animation: popout2 4s forwards;
+}
+#volumedown:checked~main .outervol{
+    transform: translate(-330px,-50%);
 }
 #volumedown:checked~main .volind>.bar{
     top: 75%;
 }
 
-@keyframes popin {
-    0%{transform: translate(300px,-50%);}
-    10%{transform: translate(0px,-50%);}
-    90%{transform: translate(0px,-50%);}
-    100%{transform: translate(300px,-50%);}
+@keyframes popout {
+    0%{transform: translate(0px);}
+    90%{transform: translate(0px);}
+    100%{transform: translate(300px);}
 }
-
-
+@keyframes popout2 {
+    0%{transform: translate(0px);}
+    90%{transform: translate(0px);}
+    100%{transform: translate(300px);}
+}
 
 
 
@@ -429,69 +569,125 @@ main{
         
     }
     .notifbar{
-        *{
-            border: solid red 1px;
-        }
         width: 100%;
-        height: 6%;
+        height: 48px;
         position: absolute;
         top: 0;left: 0;
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-end;
         align-items: center;
         color: white;
         z-index: 3;
-        .rightnot,.leftnot{
-            width: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: space-evenly;
-            flex-direction: row-reverse;
+        font-size: 20px;
+        >*{
+            margin: 3px;
+            width: fit-content;
+            height: fit-content;
+            transform: translate(-3px);
         }
+        i{
+            width: fit-content;
+            height: fit-content;
+        }
+
     }
     .monitor{
         overflow: hidden;
-        .volind{
-            overflow: hidden;
-            position: absolute;
-            width: 50px;
-            height: 50%;
-            background: rgb(71, 71, 71);
-            right: 30px;
-            top: 50%;
-            transform: translate(300px,-50%);
-            color: white;
-            font-size: 30px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            i{
-                width: 100%;
-                height: 50px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-            .bar{
+            .outervol{
+                // background: #000;
+                overflow: visible;
                 position: absolute;
-                width: 100%;
-                height: 100%;
-                background: rgb(167, 167, 167);
-                border-radius: 0px;
-                top: 0;
-                transition: 0.4s;
+                width: 50px;
+                height: 50%;
+                right: -300px;
+                top: 50%;
+                transform: translate(0px,-50%);
+                transition: 1s;
+                .volind{
+                    overflow: hidden;
+                    width: 100%;
+                    height: 100%;
+                    background: rgb(71, 71, 71);
+                    transform: translate(0px);
+                    color: white;
+                    font-size: 30px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    align-items: center;
+                    transition: 0.6s;
+                    i{
+                        width: 100%;
+                        height: 50px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                    .bar{
+                        position: absolute;
+                        width: 100%;
+                        height: 100%;
+                        background: rgb(167, 167, 167);
+                        border-radius: 0px;
+                        top: 0;
+                        transition: 0.4s;
+                    }
+                }  
             }
-        }
         .off{
             background: #000;
             opacity: 0;
-            z-index: 0;
+            z-index: -1;
             transition: opacity 0.6s;
             position: absolute;
             width: 100%;
             height: 100%;
             left: 0;top: 0;
+        }
+        .homebtn{
+            width: 200px;
+            height: 5px;
+            position: absolute;
+            left: 50%;
+            bottom: 10px;
+            transform: translate(-50%);
+            background: rgb(179, 179, 179);
+            cursor: not-allowed;
+        }
+        .lock{
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%);
+            color: white;
+            font-size: 30px;
+            top: 40px;
+            @media screen and (min-width:768px) {
+                top: 10px;
+            }
+        }
+        .bottomshrts{
+            width: 90%;
+            height: 50px;
+            position: absolute;
+            bottom: 5%;
+            left: 50%;
+            transform: translate(-50%);
+            color: rgb(233, 233, 233);
+            font-size: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            >div{
+                width: 50px;
+                height: 50px;
+            }
+            i{
+                width: 50px;
+                height: 50px;
+                background: rgba(43, 43, 43, 0.247);
+            }
         }
         .lockscreen{
             @media screen and (max-width:768px) {
@@ -507,6 +703,120 @@ main{
             left: 0;top: 0;
             
         }
-        
+        .lockscreen{
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            .clock{
+                position: absolute;
+                left: 50%;
+                transform: translate(-50%);
+                color: whitesmoke;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-weight: 100;
+                @media screen and (max-width:768px) {
+                    width:80%;
+                    height: 20%;
+                    top: 10%;
+                    font-size: 60px;
+                    // background: #000;
+                }
+                @media screen and (min-width:768px) {
+                    width:80%;
+                    height: 20%;
+                    top: 13%;
+                    font-size: 80px;
+                    // background: #000;
+                }
+            }
+            .notifications{
+                width: 90%;
+                height: fit-content;
+                border-radius: 15px;
+                position: absolute;
+                left: 50%;
+                transform: translate(-50%);
+                background: rgba(0, 0, 0, 0.185);
+                padding: 15px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-evenly;
+                @media screen and (max-width:768px) {
+                    top: 28%;
+                }
+                @media screen and (min-width:768px) {
+                    top: 30%;
+                }
+                a{
+                    width: 98%;
+                    color: white;
+                    height: fit-content;
+                    background: rgba(0, 0, 0, 0.171);
+                    margin-bottom: 10px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-around;
+                    flex-wrap: wrap;
+                    padding: 10px;
+                    cursor: pointer;
+                    figure{
+                        // background: green;
+                        width: fit-content;
+                        height: fit-content;
+                    }
+                    h3{
+                        width: 80%;
+                        @media screen and(min-width:768px) {
+                            width: 90%;
+                        }
+                    }
+                    img{
+                        width: 35px;
+                        height: 35px;
+                    }
+                    p{
+                        display: flex;
+                        flex-wrap: wrap;
+                        margin-left: 10px;
+                        i{
+                            width: fit-content;
+                            height: fit-content;
+                            margin: 0px 3px;
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+}
+
+#firstView:checked~main .viewcontrols{
+    visibility: hidden;
+}
+#Intro_Animation:checked~main .viewcontrols{
+    animation: fadein 12s ease forwards;
+}
+
+@keyframes fadein{
+    0%{ opacity: 0;}
+    90%{ opacity: 0;}
+    100%{ opacity: 1;}
+}
+
+@keyframes intro {
+    0%{
+        transform: translate(-50%,-50%) translateZ(800px) rotateX(0deg) rotateY(180deg) rotateZ(0deg) translateY(0px);
+    }
+    50%{
+        transform: translate(-50%,-50%) translateZ(0px) rotateX(0deg) rotateY(180deg) rotateZ(0deg) translateY(0px);
+    }
+    100%{
+        transform: translate(-50%,-50%) translateZ(-800px) rotateX(360deg) rotateY(755deg) rotateZ(0deg) translateY(0px);
     }
 }
